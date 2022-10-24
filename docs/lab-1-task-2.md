@@ -31,11 +31,11 @@ vBuddy and testbench behaved as expected. Observations:
     * Fits the description of adding 1 per cycle.
     * See Figure 2 below.
 
-| ![Figure 1: vBuddy 7-Segment Display](./docs/task2-sev-seg.png) |
+| ![Figure 1: vBuddy 7-Segment Display](./img/task2-sev-seg.png) |
 | :--: |
 | Figure 1: vBuddy 7-Segment Display |
 
-| ![Figure 2: vBuddy Plot Display](./docs/task2-plot.png) |
+| ![Figure 2: vBuddy Plot Display](./img/task2-plot.png) |
 | :--: |
 | Figure 2: vBuddy Plot Display |
 
@@ -56,6 +56,6 @@ count <= (en ? count + {{WIDTH-1{1'b0}}, {1'b1}} : count - {{WIDTH-1{1'b0}}, {1'
 
 The design was built and ran, which behaved as expected. See Figure 3 for results. The vBuddy plot display clearly shows an up/down change in the count.
 
-| ![Figure 3: Button-For-Up-Down-Count Challenge Result](./docs/button-for-up-down.png) |
+| ![Figure 3: Button-For-Up-Down-Count Challenge Result](./img/button-for-up-down.png) |
 | :--: |
 | Figure 3: Button-For-Up-Down-Count Challenge Result |
