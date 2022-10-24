@@ -59,7 +59,7 @@ One disadvantage of translating a Verilog design into C++ executable is that you
 ## What is Vbuddy?
 Normally using Verilator to simulate a digital circuit makes the entire process rather like software development – you compile a program, then run it!  There is no easy way of interacting with the model of the DUT.  For example, when simulating a counter, you cannot use the simulation model to drive a physical 7-segment display.   The lack of connection between software simulation and physical hardware makes the entire process of learning digital design “artificial”.  For this reason, Vbuddy was created to provide a bridge between the Verilator simulator and actual physical electronics such as microphone signal and 7-segment displays. 
 
-![Vbuddy](images/vbuddy.jpg)
+![Vbuddy](img/vbuddy.jpg)
 
 Vbuddy is so named because it is a companion (or buddy) to Verilator, Verilog and RISC-V. It consists of an ESP-C3 RISC-V microcontroller, a 240x240 TFT colour display, a rotary encoder (EC11), a microphone with an autogain amplifier (MAX9814), an Inertia Measure Unit (MPU6050), a 12-bit DAC converter (MCP4725) and two channel lowpass filter.  You will be using Vbuddy throughout the practical sessions of this module in the Autumn term.  
 
@@ -92,15 +92,15 @@ drwxr-xr-x 1 user group 512 Oct 12 00:29 lab0-devtools
 
 > If you're on Windows, VS Code must be running under WSL Ubuntu 22.04. In this case, the VS Code window should be titled as follows:
 >
-> ![image](https://user-images.githubusercontent.com/1413854/196830282-43d12cdc-aa74-457e-8cf2-ac241d495c0a.png)
+> ![image](https://user-img.githubusercontent.com/1413854/196830282-43d12cdc-aa74-457e-8cf2-ac241d495c0a.png)
 >
-> If your VS Code window title does not contain the WSL tag, you can use the button ![image](https://user-images.githubusercontent.com/1413854/196477312-9149e66e-3e31-4a98-bf19-f649bff29083.png) at the bottom left of VS Code to create a new WSL window by pressing it and choosing `New WSL Window using Distro...` with `Ubuntu-22.04`
+> If your VS Code window title does not contain the WSL tag, you can use the button ![image](https://user-img.githubusercontent.com/1413854/196477312-9149e66e-3e31-4a98-bf19-f649bff29083.png) at the bottom left of VS Code to create a new WSL window by pressing it and choosing `New WSL Window using Distro...` with `Ubuntu-22.04`
 >
 > Likewise, any commands you run during this course will need to be ran under the VS Code terminal or the Ubuntu 22.04 terminal, not Command Prompt or Powershell.
 
 **Step 3:** Create a new System Verilog file (counter.sv), and enter the code shown on the right. You should include all the comments for future reference.  Colour highlight is automatic if you have installed the System Verilog package for VSC. The schematic representation of this basic counter is shown below. It counts on the positive edge of clk if enable is ‘1’.  It is synchronously reset to 0 if rst is asserted.  Save this file as counter.sv.
 
-![counter](images/counter.jpg)
+![counter](img/counter.jpg)
 
 Note the following:
 1.	The file name and the module name must be the same.
@@ -111,7 +111,7 @@ Note the following:
 
 Here is the mapping between System Verilog and the counter circuit "synthesized" via Verilator:
 
-![counter interal](images/counter_inners.jpg)
+![counter interal](img/counter_inners.jpg)
 
 **Step 4:** Create the testbench file **_counter_tb.cpp_** in C++ using VS Code.  
 
@@ -119,7 +119,7 @@ We need to do this before we can combine everything to make the executable model
 
 This testbench file is a template for all other testbench files. It consists of various sections, which are mandatory (except for the trace dump section if you don’t want to see the waveforms).  Make sure that you understand what each section is for!
 
-![Testbench](images/counter_tb.jpg)
+![Testbench](img/counter_tb.jpg)
 
 **Step 5: Compile the System Verilog model with the testbench** 
 
@@ -153,7 +153,7 @@ This runs very fast, and you may think that nothing happened.  However, if you e
 Start the GTKwave program on your laptop. Select *File -> Open New Tab* and select **_counter.vcd_** file.  A GTKwave window will appear.  Click *Top -> counter*, followed by the signals: **_clk, rst, en_** and **_count[7:0]_**.  
 Use the + and - icons to adjust the zoom level.  You should see the following. 
 
-![gtkWave](images/waveform.jpg)
+![gtkWave](img/waveform.jpg)
 
 Make sure you understand all waveform signals.  
 
@@ -167,7 +167,7 @@ To avoid retyping all the commands to make the executable model, create a shell 
 
 You can now run all the commands in one go by typing:   
 
-![bash script](images/doit.jpg)
+![bash script](img/doit.jpg)
 
 You can now run all the commands in one go by typing:   
 ```bash
@@ -187,7 +187,7 @@ Verilator produces the executable model **_obj_dir/Vcounter_** and the trace wav
 
 Explore what files are created by Verilator in **_obj_dir/ _** and now open in VS code the file: **_Vcounter__024root_....._0.cpp_**.
 
-![Verilator Generated](images/verilator_output.jpg)
+![Verilator Generated](img/verilator_output.jpg)
 
 ## TEST YOURSELF CHALLENGES:  
 1.	Modify the testbench so that you stop counting for 3 cycles once the counter reaches 0x9, and then resume counting.  You may also need to change the stimulus for _rst_.
@@ -229,7 +229,7 @@ The respective device name is `/dev/ttyS{number}`
 
 For example, in the case of the picture below, the device name would be `/dev/ttyS3`. Make sure the `S` is a capital letter when you later use this value.
 
-![image](https://user-images.githubusercontent.com/1413854/196824390-356e0531-be49-490c-ae63-46149d22bd87.png)
+![image](https://user-img.githubusercontent.com/1413854/196824390-356e0531-be49-490c-ae63-46149d22bd87.png)
 
 ---
 
@@ -241,7 +241,7 @@ Copy **_counter.sv_** and **_count_tb.cpp_** to your task2 folder.
 
 Modify the testbench file  **_count_tb.cpp_**  to include **Vbuddy function** as shown in the diagram below.  What they do are self-explanatory.  You can find a list of the current Vbuddy functions which you can include in the testbench file here.  These functions are of the form **_vbdXxxx_**.
 
-![testbench with Vbuddy](images/vbd_function.jpg)
+![testbench with Vbuddy](img/vbd_function.jpg)
 
 Recompile and test.
 
@@ -329,4 +329,4 @@ bin2bcd myDecoder (
 endmodule
 ```
 Modify the testbench file **_top_tb.cpp_** accordingly.  
-Modify the **_doit.sh_** file from task 3 to include all the modules (**_top.sv, counter.sv, bin2bcd.sv_** and **_top_tb.sv_**).  Compile and run the Verilated model.  Check that it works according to expectation.
+Modify the **_doit.sh_** file from task 3 to include all the modules (**_top.sv, counter.sv, bin2bcd.sv_** and **_top_tb.cpp_**).  Compile and run the Verilated model.  Check that it works according to expectation.
