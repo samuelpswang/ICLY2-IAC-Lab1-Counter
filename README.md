@@ -1,1 +1,1 @@
-Lab_1.md
+./docs/lab-1.md
