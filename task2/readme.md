@@ -31,15 +31,13 @@ vBuddy and testbench behaved as expected. Observations:
     * Fits the description of adding 1 per cycle.
     * See Figure 2 below.
 
-<figure>
-    <img src="./docs/task2-sev-seg.png" style="width: 75%">
-    <figcaption>Figure 1: vBuddy 7-Segment Display</figcaption>
-</figure>
+| ![Figure 1: vBuddy 7-Segment Display](./docs/task2-sev-seg.png) |
+| :--: |
+| Figure 1: vBuddy 7-Segment Display |
 
-<figure>
-    <img src="./docs/task2-plot.png" style="width: 75%">
-    <figcaption>Figure 2: vBuddy Plot Display</figcaption>
-</figure>
+| ![Figure 2: vBuddy Plot Display](./docs/task2-plot.png) |
+| :--: |
+| Figure 2: vBuddy Plot Display |
 
 > Note 1: `>>` is the bitwise shift operator. E.g. `num >> 4` is num right shift by 4 digits.
 
@@ -48,4 +46,16 @@ vBuddy and testbench behaved as expected. Observations:
 
 ## Test Yourself Challenge
 
-To-Be-Done
+### Challenge 1: Button-For-Up-Down-Count
+
+To implement the challenge, what is written to the `count` output signal is changed. If `en` is 1, `count` will be written as (`count`+1). If `en` is 0, `count` will be written as (`count`-1). See below for code snippet.
+
+```verilog
+count <= (en ? count + {{WIDTH-1{1'b0}}, {1'b1}} : count - {{WIDTH-1{1'b0}}, {1'b1}});
+```
+
+The design was built and ran, which behaved as expected. See Figure 3 for results. The vBuddy plot display clearly shows an up/down change in the count.
+
+| ![Figure 3: Button-For-Up-Down-Count Challenge Result](./docs/button-for-up-down.png) |
+| :--: |
+| Figure 3: Button-For-Up-Down-Count Challenge Result |
